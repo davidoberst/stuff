@@ -1,16 +1,17 @@
-#NATAS11 XOR KEY DECRYPT
-
 import base64
 
-#decode base64
-encodedCookie = "HmYkBwozJw4WNyAAFyB1VUcqOE1JZjUIBis7ABdmbU1GIjEJAyIxTRg="
-decodedC = base64.b64decode(encodedCookie)
-#encode XOR
-plaintext = b'{"showpassword":"no","bgcolor":"#ffffff"}' #b = bytes
-key = b'' #start constructing the key from bytes
+key = b"eDWo"
 
-for i in range(len(decodedC)):
-    key += bytes([decodedC[i] ^ plaintext[i]])
+new_plaintext = b'{"showpassword":"yes","bgcolor":"#ffffff"}'
 
-print(key)
+encrypted = b""
+
+for i in range(len(new_plaintext)):
+    encrypted += bytes([
+        new_plaintext[i] ^ key[i % len(key)]
+    ])
+    
+cookie = base64.b64encode(encrypted)
+
+print(cookie.decode())
 
